@@ -18,39 +18,39 @@ The build process generates a portable class library, which can be used like a n
 
 ### Installation
 
-The following section explains how to use the UNIREST library in a new project.
+The following section explains how to use the APIMATICCalculator.Standard library in a new project.
 
 #### 1. Starting a new project
 
 For starting a new project, right click on the current solution from the solution explorer and choose `Add -> New Project`.
 
-![Add a new project in Visual Studio](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=UNIREST&rootNamespace=UNIREST&step=addProject)
+![Add a new project in Visual Studio](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=APIMATICCalculator.Standard&rootNamespace=APIMATICCalculator.Standard&step=addProject)
 
 Next, choose `Console Application`, provide `TestConsoleProject` as the project name and click OK.
 
-![Create a new Console Application in Visual Studio](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=UNIREST&rootNamespace=UNIREST&step=createProject)
+![Create a new Console Application in Visual Studio](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=APIMATICCalculator.Standard&rootNamespace=APIMATICCalculator.Standard&step=createProject)
 
 #### 2. Set as startup project
 
 The new console project is the entry point for the eventual execution. This requires us to set the `TestConsoleProject` as the start-up project. To do this, right-click on the `TestConsoleProject` and choose `Set as StartUp Project` form the context menu.
 
-![Adding a project reference](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=UNIREST&rootNamespace=UNIREST&step=setStartup)
+![Adding a project reference](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=APIMATICCalculator.Standard&rootNamespace=APIMATICCalculator.Standard&step=setStartup)
 
 #### 3. Add reference of the library project
 
 In order to use the Tester library in the new project, first we must add a project reference to the `TestConsoleProject`. First, right click on the `References` node in the solution explorer and click `Add Reference...`
 
-![Adding a project reference](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=UNIREST&rootNamespace=UNIREST&step=addReference)
+![Adding a project reference](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=APIMATICCalculator.Standard&rootNamespace=APIMATICCalculator.Standard&step=addReference)
 
 Next, a window will be displayed where we must set the `checkbox` on `Tester.Tests` and click `OK`. By doing this, we have added a reference of the `Tester.Tests` project into the new `TestConsoleProject`.
 
-![Creating a project reference](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=UNIREST&rootNamespace=UNIREST&step=createReference)
+![Creating a project reference](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=APIMATICCalculator.Standard&rootNamespace=APIMATICCalculator.Standard&step=createReference)
 
 #### 4. Write sample code
 
 Once the `TestConsoleProject` is created, a file named `Program.cs` will be visible in the solution explorer with an empty `Main` method. This is the entry point for the execution of the entire solution. Here, you can add code to initialize the client library and acquire the instance of a Controller class. Sample code to initialize the client library and using Controller methods is given in the subsequent sections.
 
-![Adding a project reference](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=UNIREST&rootNamespace=UNIREST&step=addCode)
+![Adding a project reference](https://apidocs.io/illustration/cs?workspaceFolder=APIMATIC%20Calculator-CSharp&workspaceName=APIMATICCalculator&projectName=APIMATICCalculator.Standard&rootNamespace=APIMATICCalculator.Standard&step=addCode)
 
 ### Initialize the API Client
 
@@ -63,7 +63,7 @@ The following parameters are configurable for the API Client:
 The API client can be initialized as follows:
 
 ```csharp
-UNIREST.APIMATICCalculatorClient client = new UNIREST.APIMATICCalculatorClient();
+APIMATICCalculator.Standard.APIMATICCalculatorClient client = new APIMATICCalculator.Standard.APIMATICCalculatorClient();
 ```
 
 Parameters for retries can be configured through the HttpClientConfiguration in the API Client:
@@ -253,6 +253,9 @@ Class to build instances of APIMATIC CalculatorClient.
 | `HttpClientConfiguration(Action<HttpClientConfiguration.Builder> action)` | Gets the configuration of the Http Client associated with this client. | `Builder` |
 | `Timeout(TimeSpan timeout)` | Http client timeout. | `Builder` |
 | `Environment(Environment environment)` | Current API environment. | `Builder` |
+| `HttpClientConfiguration(Action<HttpClientConfiguration.Builder> action)` | Gets the configuration of the Http Client associated with this client. | `Builder` |
+| `Timeout(TimeSpan timeout)` | Http client timeout. | `Builder` |
+| `Environment(Environment environment)` | Current API environment. | `Builder` |
 
 ## API Reference
 
@@ -272,14 +275,14 @@ An instance of the `SimpleCalculatorController` class can be accessed from the A
 SimpleCalculatorController simpleCalculatorController = client.SimpleCalculatorController;
 ```
 
-#### Get Calculate
+#### Calculate
 
 Calculates the expression using the specified operation.
 
 :information_source: **Note** This endpoint does not require authentication.
 
 ```csharp
-GetCalculateAsync(
+CalculateAsync(
     Models.OperationTypeEnum operation,
     double x,
     double y)
@@ -306,7 +309,7 @@ double y = 165.14;
 
 try
 {
-    double? result = await simpleCalculatorController.GetCalculateAsync(operation, x, y);
+    double? result = await simpleCalculatorController.CalculateAsync(operation, x, y);
 }
 catch (ApiException e){};
 ```
